@@ -1,9 +1,19 @@
 *.py[cod]
 
+multinorm.cpp
+recipes_tests.cpp
+
 # emacs
 
-character "#".
 *~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+.\#*
+
 
 # C extensions
 *.so
