@@ -9,7 +9,8 @@ To build
 
 0) Tested witn Macports python 2.7.3 and gcc47 4.7.2_2 for osx and
    Enthought 7.3.2 with 32 bit windows (cygwin g++ 4.5.2 under parallels),
-   both with cython 0.18
+   both with cython 0.18.  Currently not working with g++ 4.6.1 for
+   Ubuntu lucid
 
 1) Edit setup.py and replace::
 
@@ -17,16 +18,18 @@ To build
 
    with the path to your numerical recipes directory
 
-2) Edit multinormaldev.h in that directory to add the dependencies::
+2) Copy nr3cython.h to that directory
 
-     #include "nr3.h"
+3) Edit multinormaldev.h in that directory to add the dependencies::
+
+     #include "nr3cython.h"
      #include "ran.h"
      #include "cholesky.h"
 
      struct Multinormaldev : Ran {
      ...
 
-3)  Exectuing::
+4)  Exectuing::
 
        python setup.py build_ext  
 
