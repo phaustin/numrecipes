@@ -88,7 +88,7 @@ template<class T>
 inline T SQR(const T a) {return a*a;}
 
 template<class T>
-inline const T & NR_MAX(const T &a, const T &b)
+inline const T &NR_MAX(const T &a, const T &b)
         {return b > a ? (b) : (a);}
 
 inline float NR_MAX(const double &a, const float &b)
@@ -151,10 +151,10 @@ public:
 // NRvector definitions
 
 template <class T>
-NRvector<T>::NRvector() : nn(0), v(NULL), ownsdata(1){}
+NRvector<T>::NRvector() : nn(0),v(NULL),ownsdata(1){}
 
 template <class T>
-NRvector<T>::NRvector(int n) : nn(n), ownsdata(1), v(n>0 ? (T*)PyMem_Malloc(n*sizeof(T)) : NULL) {}
+NRvector<T>::NRvector(int n) : nn(n), v(n>0 ? (T*)PyMem_Malloc(n*sizeof(T))  : NULL), ownsdata(1) {}
 
 template <class T>
 void NRvector<T>::initpyvec(PyObject *a) {
@@ -176,20 +176,20 @@ template <class T> NRvector<T>::NRvector(PyObject *a) {
 }
 
 template <class T>
-NRvector<T>::NRvector(int n, const T& a) : nn(n), ownsdata(1), v(n>0 ? (T*)PyMem_Malloc(n*sizeof(T)) : NULL)
+NRvector<T>::NRvector(int n, const T& a) : nn(n),  v(n>0 ? (T*)PyMem_Malloc(n*sizeof(T)) : NULL), ownsdata(1)
 {
 	for(int i=0; i<n; i++) v[i] = a;
 }
 
 template <class T>
-NRvector<T>::NRvector(int n, const T *a) : nn(n), ownsdata(1), v(n>0 ? (T*)PyMem_Malloc(n*sizeof(T)) : NULL)
+NRvector<T>::NRvector(int n, const T *a) : nn(n),  v(n>0 ? (T*)PyMem_Malloc(n*sizeof(T)) : NULL), ownsdata(1)
 {
 	for(int i=0; i<n; i++) v[i] = *a++;
 }
 
 template <class T>
-NRvector<T>::NRvector(const NRvector<T> &rhs) : nn(rhs.nn), ownsdata(1),
-	v(nn>0 ? (T*)PyMem_Malloc(nn*sizeof(T)) : NULL) {
+NRvector<T>::NRvector(const NRvector<T> &rhs) : nn(rhs.nn),
+       v(nn>0 ? (T*)PyMem_Malloc(nn*sizeof(T)) : NULL),  ownsdata(1) {
 	for(int i=0; i<nn; i++) v[i] = rhs[i];
 }
 
@@ -300,10 +300,10 @@ public:
 };
 
 template <class T>
-NRmatrix<T>::NRmatrix() : nn(0), mm(0), ownsdata(1), v(NULL) {}
+NRmatrix<T>::NRmatrix() : nn(0), mm(0), v(NULL),ownsdata(1)  {}
 
 template <class T>
-NRmatrix<T>::NRmatrix(int n, int m) : nn(n), mm(m), ownsdata(1), v(n>0 ? new T*[n] : NULL)
+NRmatrix<T>::NRmatrix(int n, int m) : nn(n), mm(m),  v(n>0 ? new T*[n] : NULL), ownsdata(1)
 {
 	int i,nel=m*n;
 	if (v) v[0] = nel>0 ? (T*)PyMem_Malloc(nel*sizeof(T)) : NULL;
@@ -334,7 +334,7 @@ template <class T> NRmatrix<T>::NRmatrix(PyObject *a) {
 }
 
 template <class T>
-NRmatrix<T>::NRmatrix(int n, int m, const T &a) : nn(n), mm(m), ownsdata(1), v(n>0 ? new T*[n] : NULL)
+NRmatrix<T>::NRmatrix(int n, int m, const T &a) : nn(n), mm(m),  v(n>0 ? new T*[n] : NULL), ownsdata(1)
 {
 	int i, j, nel=m*n;
 	if (v) v[0] = nel>0 ? (T*)PyMem_Malloc(nel*sizeof(T)) : NULL;
@@ -343,7 +343,7 @@ NRmatrix<T>::NRmatrix(int n, int m, const T &a) : nn(n), mm(m), ownsdata(1), v(n
 }
 
 template <class T>
-NRmatrix<T>::NRmatrix(int n, int m, const T *a) : nn(n), mm(m), ownsdata(1), v(n>0 ? new T*[n] : NULL)
+NRmatrix<T>::NRmatrix(int n, int m, const T *a) : nn(n), mm(m),  v(n>0 ? new T*[n] : NULL), ownsdata(1)
 {
 	int i,j,nel=m*n;
 	if (v) v[0] = nel>0 ? (T*)PyMem_Malloc(nel*sizeof(T)) : NULL;
@@ -352,7 +352,7 @@ NRmatrix<T>::NRmatrix(int n, int m, const T *a) : nn(n), mm(m), ownsdata(1), v(n
 }
 
 template <class T>
-NRmatrix<T>::NRmatrix(const NRmatrix &rhs) : nn(rhs.nn), mm(rhs.mm), ownsdata(1), v(nn>0 ? new T*[nn] : NULL)
+NRmatrix<T>::NRmatrix(const NRmatrix &rhs) : nn(rhs.nn), mm(rhs.mm),  v(nn>0 ? new T*[nn] : NULL), ownsdata(1)
 {
 	int i,j,nel=mm*nn;
 	if (v) v[0] = nel>0 ? (T*)PyMem_Malloc(nel*sizeof(T)) : NULL;
@@ -364,7 +364,7 @@ NRmatrix<T>::NRmatrix(const NRmatrix &rhs) : nn(rhs.nn), mm(rhs.mm), ownsdata(1)
 template <class T>
 NRmatrix<T> & NRmatrix<T>::operator=(const NRmatrix<T> &rhs) {
 	if (this != &rhs) {
-		int i,j,nel;
+		int i,j;
 		if (nn != rhs.nn || mm != rhs.mm) {
 			resize(rhs.nn,rhs.mm);
 			nn=rhs.nn;
