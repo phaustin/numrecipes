@@ -53,6 +53,7 @@ os.environ['CC'] = "g++"
 
 nrecipesdir='/Users/phil/repos/nrecipes/NR_C301/code304/'
 #nrecipesdir= r'z:\repos\nrecipes\NR_C301\code304'
+nrecipesdir='/home/phil/repos/nrecipes/NR_C301/code304/'
 
 recipes=Extension('recipes_tests', ['recipes_tests.pyx'],
             include_dirs = [numpy.get_include(),nrecipesdir],

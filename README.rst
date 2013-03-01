@@ -7,10 +7,13 @@ http://www.nr.com/nr3python.h for use with cython.
 To build
 --------
 
-0) Tested witn Macports python 2.7.3 and gcc47 4.7.2_2 for osx and
+0) Tested witn Macports python 2.7.3 and gcc 4.7.2_2 for osx,
    Enthought 7.3.2 with 32 bit windows (cygwin g++ 4.5.2 under parallels),
-   both with cython 0.18.  Currently not working with g++ 4.6.1 for
-   Ubuntu lucid
+   and Ubuntu lucid with gcc 4.7.2.2, all with cython 0.18.  
+   Under Ubuntu the preprocessor removes MAX and MIN from the
+   header, so I've changed those names to NR_MAX and NR_MIN to compile.
+   Any numrecipe header that uses MAX or MIN will need to
+   be edited to match that change
 
 1) Edit setup.py and replace::
 
