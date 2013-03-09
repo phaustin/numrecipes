@@ -87,6 +87,9 @@ template <> inline int NRpyTypeOK<int>(PyObject *a) {
 template<class T>
 inline T SQR(const T a) {return a*a;}
 
+//NR_MAX, NR_MIN redefined from nr3python.h because
+//linux g++ preprocessor remove MIN and MAX (pha)
+
 template<class T>
 inline const T &NR_MAX(const T &a, const T &b)
         {return b > a ? (b) : (a);}
