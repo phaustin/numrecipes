@@ -15,7 +15,7 @@ To build
    Any numrecipe header that uses MAX or MIN will need to
    be edited to match that change
 
-1) Edit setup.py and replace::
+1) Edit setup_xxx.py (where xxx is win, osx or linux) and replace nrecipesdir::
 
      nrecipesdir='/Users/phil/repos/nrecipes/NR_C301/code304/'
 
@@ -32,9 +32,9 @@ To build
      struct Multinormaldev : Ran {
      ...
 
-4)  Exectuing::
+4)  Exectuing the appropriate setup_xx.py eg::
 
-       python setup.py build_ext  
+       python setup_osx.py build_ext  
 
     in the numrecipes directory 
     should produce an inplace build with many warnings but files named
