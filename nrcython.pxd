@@ -1,24 +1,27 @@
 from cpython.ref cimport PyObject
 
 cdef extern from "nr3cython.h":
-    cdef cppclass MatDoub:
-        MatDoub() 
-        MatDoub(PyObject*) except +
+    cdef cppclass NRmatrix[T]:
+        NRmatrix() 
+        NRmatrix(PyObject*) except +
         int ownsdata
         int nrows() const
         int ncols() const
-        double* operator[](const int i)
-        MatDoub(int n, int m, double &a)
+        T* operator[](const int i)
+        NRmatrix(int n, int m, T &a)
         PyObject* pyident
 
-    cdef cppclass VecDoub:
-        VecDoub() 
-        VecDoub(PyObject*) except +
+    cdef cppclass NRvector[T]:
+        NRvector() 
+        NRvector(PyObject*) except +
         int ownsdata
         int size() const
-        double& operator[](const int i)
-        VecDoub(int n, double &a)
+        T& operator[](const int i)
+        NRvector(int n, T &a)
         PyObject* pyident
 
-    cdef PyObject* NRpyObject(VecDoub& nrvector)
-    cdef PyObject* NRpyObject(MatDoub& nrmatrix)
+    cdef PyObject* NRpyObject(NRvector[double]& nrvector)
+    cdef PyObject* NRpyObject(NRmatrix[double]& nrmatrix)
+
+ctypedef NRvector[double] VecDoub
+ctypedef NRmatrix[double] MatDoub
