@@ -10,7 +10,7 @@ def test_pyobject_constructorII():
     rt.test_pyobject_constructorII()
     
 def test_NRpyObject_MatDoub():
-    rt.test_NRpyObject_MatDoub
+    rt.test_NRpyObject_MatDoub()
 
 def test_NRpyObject_VecDoub():
     rt.test_NRpyObject_VecDoub()
