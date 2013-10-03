@@ -7,7 +7,7 @@ http://www.nr.com/nr3python.h for use with cython.
 To build
 --------
 
-0) Tested witn Macports python 2.7.3 and gcc 4.7.2_2 for osx,
+0) Tested with Macports python 2.7.3 and gcc 4.7.2_2 for osx,
    Enthought 7.3.2 with 32 bit windows (cygwin g++ 4.5.2 under parallels),
    and Ubuntu lucid with gcc 4.7.2.2, all with cython 0.18.  
    Under Ubuntu the preprocessor removes MAX and MIN from the
@@ -32,7 +32,7 @@ To build
      struct Multinormaldev : Ran {
      ...
 
-4)  Exectuing the appropriate setup_xx.py eg::
+4)  Executing the appropriate setup_xx.py eg::
 
        python setup_osx.py build_ext  
 
