@@ -3,6 +3,7 @@ cimport numpy as np
 from nrcython cimport *
 from nose.tools import assert_equal
 from nose.tools import assert_not_equal
+import sys
 
 np.import_array()
 
@@ -22,11 +23,14 @@ def test_pyobject_constructorI():
     #
     # assignment operater creates new object
     #
+    print "ref counts:",sys.getrefcount(py_mat),sys.getrefcount(<object> nr_mat.pyident)
+    
     assert_not_equal(id(py_mat),id(<object> nr_mat.pyident))
 
 def test_pyobject_constructorII():
     cdef MatDoub nr_mat=MatDoub(3,3,88.)
     py_mat=<object>  NRpyObject(nr_mat)
+    print "ref counts py_mat ",sys.getrefcount(py_mat)
     assert_equal(id(py_mat),id(<object> nr_mat.pyident))
     
 def test_NRpyObject_MatDoub():

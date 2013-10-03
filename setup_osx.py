@@ -53,17 +53,20 @@ os.environ['CC'] = "g++"
 
 nrecipesdir='/Users/phil/repos/nrecipes/NR_C301/code304/'
 
+defines=[('CYTHON_REFNANNY', '1')]
 
 recipes=Extension('recipes_tests', ['recipes_tests.pyx'],
             include_dirs = [numpy.get_include(),nrecipesdir],
             extra_compile_args=['-O3', '-fPIC'],
             library_dirs=['.'],
+            define_macros=defines,
             language="c++")
 
 multinorm=Extension('multinorm', ['multinorm.pyx'],
             include_dirs = [numpy.get_include(),nrecipesdir],
             extra_compile_args=['-O3', '-fPIC'],
             library_dirs=['.'],
+            define_macros=defines,
             language="c++")
 
 ext_modules = [recipes,multinorm]
